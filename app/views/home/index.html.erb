@@ -1,4 +1,38 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
-<%= link_to "Sign out","/users/sign_out", method: :delete %>
+<div class="body-div">
+  <div class="nav-div">
+    <div class="logo">
+      <a href="/">
+        <p>Insta</p>
+      </a>
+    </div>
+    <div class="search-box"><input type="text" placeholder="Search" class="search"></div>
+    <div class="nav-icon"><a href="/"><i class="fa-solid fa-house"></i></a></div>
+    <div class="nav-icon"><a href=""><i class="fa-solid fa-circle-plus"></i></a></div>
+    <div class="nav-icon"><a href=""><i class="fa-solid fa-heart"></i></a></div>
+    <div class="profile-icon"><i class="fa-solid fa-circle-user"></i>
+      <div class="dropdown-content">
+        <%= link_to "Profile" ,"/" , class:"a"%>
+        <%= link_to "Log Out","/users/sign_out", method: :delete, class:"a" %>
+      </div>
+    </div>
+  </div>
+  <div class="main-div">
+    <div class="post-box">
+      <div class="username-div">
+        <div class="user-profile"><i class="fa-solid fa-circle-user"></i> </div>
+        <div class="username">
+          <p>Gguk</p>
+        </div>
+      </div>
+      <div class="img-div"><%= image_tag("profile-img.jpg", height:"450px", width:"400px") %></div>
+      <div class="like-main-div">
+        <div class="like-div"><i class="fa-regular fa-heart"></i></div>
+        <div class="comment-icon-div"><i class="fa-regular fa-comment"></i></div>
+      </div>
+      <div class="comment-box-div">
+        <p>Add Your Comments</p>
+        <button>Post</button>
+      </div>
+    </div>
+  </div>
+</div>
