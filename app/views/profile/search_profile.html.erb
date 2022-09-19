@@ -1,0 +1,24 @@
+<% @username.each do |user| %>
+<div class="body-profile">
+  <div class="main-profile">
+    <div class="profile-photo">
+      <i class="fa-regular fa-circle-user"></i>
+    </div>
+    <div class="profile-view">
+      <div class="uname-class">
+        <label class="user-name"><%= user.name %></label>
+      </div>
+      <div class="follow-class">
+        <p>Posts</p>
+        <p>Following</p>
+        <p>Followers</p>
+      </div>
+      <div class="name-class">
+        <label class="user-name"><%= user.user_name %></label>
+      </div>
+    </div>
+  </div>
+  <div class="post-profile">
+  </div>
+</div>
+<%end%>

@@ -22,23 +22,31 @@
       </div>
     </div>
   </div>
-  <div class="main-div">
-    <div class="post-box">
-      <div class="username-div">
-        <div class="user-profile"><i class="fa-solid fa-circle-user"></i> </div>
-        <div class="username">
-          <p>Gguk</p>
+  <div class="body-profile">
+    <div class="main-profile">
+      <div class="profile-photo">
+        <i class="fa-regular fa-circle-user"></i>
+      </div>
+      <div class="profile-view">
+        <div class="uname-class">
+          <label class="user-name"><%= current_user.name %></label>
+        </div>
+        <div class="follow-class">
+          <p>Posts</p>
+          <p>Following</p>
+          <p>Followers</p>
+        </div>
+        <div class="name-class">
+          <label class="user-name"><%=current_user.user_name %></label>
         </div>
       </div>
-      <div class="img-div"><%= image_tag("profile-img.jpg", height:"450px", width:"400px") %></div>
-      <div class="like-main-div">
-        <div class="like-div"><i class="fa-regular fa-heart"></i></div>
-        <div class="comment-icon-div"><i class="fa-regular fa-comment"></i></div>
-      </div>
-      <div class="comment-box-div">
-        <p>Add Your Comments</p>
-        <button>Post</button>
+    </div>
+    <div class="post-profile">
+      <div>
+        <% Post.all.each do |posts|%>
+          <%= image_tag @posts.image.url %>
+          <p><%= posts.description %></p>
+        <%end%>
       </div>
     </div>
   </div>
-</div>
