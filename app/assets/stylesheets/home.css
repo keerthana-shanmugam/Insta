@@ -8,6 +8,7 @@
 }
 
 .nav-div {
+    position: fixed;
     display: flex;
     background-color: whitesmoke;
     width: 100%;
@@ -15,6 +16,7 @@
     padding: 5px;
     justify-content: center;
     border-bottom: 2px soild black;
+    z-index: 1;
 }
 
 .nav-icon {margin-top: 4px;}
@@ -97,10 +99,12 @@
 }
   
 .main-div {
-    display: flex;
-    justify-content: center;
-    margin-top: 5px;
-}
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin-top: 52%;
+ }
 
 .post-box {
     margin: 5px;
@@ -108,8 +112,9 @@
     padding: 10px;
     border: 2px solid black;
     border-radius: 5px;
-    display: block;
     background-color: whitesmoke;
+    width: 425px;
+    height: auto;
 }
 
 .username-div {
@@ -175,5 +180,5 @@
     width: 80px;
     height: 35px;
     border-radius: 5px;
-    margin-left: 170px;
+    margin-left: 150px;
 }

@@ -1,3 +1,36 @@
 /* // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/ */
+.nav-bar-div {
+    display: flex;
+    background-color: whitesmoke;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    justify-content: center;
+    border-bottom: 2px soild black;
+    z-index: 1;
+}
+.post-main-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+.add-post-div{
+    border: 2px solid black;
+    border-radius: 5px;
+    height: auto;
+    width: 350px;
+    padding: 5px;
+    align-items: center;
+}
+.post-form {
+    padding: 4px;
+    margin: 3px;
+    border: 2px solid black;  
+    width: 300px;  
+    height: auto;
+}
+.add-post {
+    background-color: rgb(250, 81, 78);
+}

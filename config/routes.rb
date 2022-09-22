@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     root 'devise/sessions#new', as: :unauthenticated_root
   end
  end
- 
+  get '/posts' , to: 'posts#user_post'
   post '/new_posts', to: 'posts#create'
   get '/search' , to: 'profile#search'
 end

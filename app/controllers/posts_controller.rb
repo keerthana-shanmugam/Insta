@@ -4,22 +4,19 @@ class PostsController < ApplicationController
 
   def create
     # debugger
-    @posts = Post.new(post_params)
-    @posts.user_id = current_user.id
-    p "===================================="
-    p "===================================="
-    p "===================================="
- puts @posts.description
-    if @posts.save
-      redirect_to '/profile/new'
+    posts = Post.create!(
+      image: params[:image],
+      description: params[:description],
+      user_id: current_user.id
+    )
+    if posts.save
+      redirect_to '/home/index'
     else
       render plain:false
     end
   end
 
-  private
-
-  def post_params
-    params.require(:posts).permit(:image, :description)
+  def user_post
+    @item_post = Post.all
   end
 end

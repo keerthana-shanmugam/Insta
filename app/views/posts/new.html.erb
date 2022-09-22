@@ -1,5 +1,5 @@
 <div class="body-div">
-  <div class="nav-div">
+  <div class="nav-bar-div">
     <div class="logo">
       <a href="/">
         <p>Insta</p>
@@ -22,13 +22,18 @@
       </div>
     </div>
   </div>
-  <div class="main-div">
-    <div>
-      <%= form_with url: "/new_posts", method: "post" do |form|%>
-        <%= form.file_field "posts[image]", multiple: true, class:"image-post" %>
-        <%= form.text_field "posts[description]", placeholder:"Type your Description", class:"desc-post" %>
-        <%= form.submit "Post", class:"add-post"%>
-      <%end%>
+</div>
+
+  <div class="post-main-div">
+    <div class="add-post-div">
+     
+      <form action="/new_posts", method="post" enctype='multipart/form-data'>
+        <input type = "hidden" name = "authenticity_token" value = "<%= form_authenticity_token %>">
+        <input type="text" value="<%= current_user.id %>" name="user_id" hidden>
+        <input type="file" name="image" class="post-form" required>
+        <input type="text" name="description" placeholder="description" class="post-form" required>
+        <input type="submit" name="Post" class="add-post">
+      </form>
     </div>
   </div>
-</div>
+

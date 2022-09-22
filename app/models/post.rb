@@ -1,12 +1,8 @@
+require 'carrierwave/orm/activerecord'
 class Post < ApplicationRecord
-
   mount_uploader :image, ImageUploader
 
-  validates_processing_of :image
-  validate :image_size_validation
-  private
-   def image_size_validation
-    errors[:image] << "should be less than 500KB" if image.size > 
-    0.5.megabytes
-   end
+  belongs_to :user, class_name: 'User'
+  has_many :likes, class_name: 'Like' , foreign_key: 'post_id'
+  has_many :comments, class_name: 'Comment' , foreign_key: 'post_id'
 end
