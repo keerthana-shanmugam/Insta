@@ -1,24 +1,50 @@
-<% @username.each do |user| %>
-<div class="body-profile">
-  <div class="main-profile">
-    <div class="profile-photo">
-      <i class="fa-regular fa-circle-user"></i>
-    </div>
-    <div class="profile-view">
-      <div class="uname-class">
-        <label class="user-name"><%= user.name %></label>
-      </div>
-      <div class="follow-class">
-        <p>Posts</p>
-        <p>Following</p>
-        <p>Followers</p>
-      </div>
-      <div class="name-class">
-        <label class="user-name"><%= user.user_name %></label>
-      </div>
-    </div>
-  </div>
-  <div class="post-profile">
+<div class="body-search-profile">
+  <div class="main-search-profile">
+    <% @username.each do |user| %>
+      <% if user == current_user %>
+        <div class="profile-photo">
+          <i class="fa-regular fa-circle-user"></i>
+        </div>
+        <div class="profile-view">
+          <div class="uname-class">
+            <label class="user-name"><%= user.user_name %></label>
+          </div>
+          <div class="follow-class">
+           <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
+          <p><span><%=FollowRequest.where(id: current_user.id).count %></span>Following</p>
+          <p><span><%=Follower.where(id: current_user.id).count %></span>Followers</p>
+          </div>
+          <div class="name-class">
+            <label class="user-name"><%= user.name %></label>
+          </div>
+        </div>
+      <% else %>
+        <div class="profile-photo">
+          <i class="fa-regular fa-circle-user"></i>
+        </div>
+        <div class="profile-view">
+          <div class="uname-class">
+            <label class="user-name"><%= user.user_name %></label>
+          </div>
+          <div class="follow-class">
+           <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
+          <p><span><%=FollowRequest.where(id: current_user.id).count %></span>Following</p>
+          <p><span><%=Follower.where(id: current_user.id).count %></span>Followers</p>
+          </div>
+          <div class="name-class">
+            <label class="user-name"><%= user.name %></label>
+          </div>
+          <div class="div">
+            <% friend_req = FollowRequest.find_by(sender_id: current_user.id,receiver_id: user.id) %>
+            <% unless friend_req %>
+              <a href="/search_profile/<%= user.id%>"><button class = "before_status">Follow</button></a>
+            <% else %>
+              <button class = "after_status">Unfollow</button>
+            <% end %>
+          </div>
+        </div>
+      <%end%>
+    <%end%>
+    <%# <% FollowRequest.each do |request| %>
   </div>
 </div>
-<%end%>

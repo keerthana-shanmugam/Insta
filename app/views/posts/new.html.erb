@@ -6,9 +6,9 @@
       </a>
     </div>
     <div class="search-box">
-      <form role="search" action="/search" method="get">
-        <input type="text" placeholder="Search" class="search" required pattern=".*\S+.*" title="Search field cannot be Blank">
-        <button type="submit" name="q"><em class="fa fa-search" aria-hidden="true"></em>
+      <form action="/search_profile" method="get">
+        <input type="text" placeholder="Search" class="search" required pattern=".*\S+.*" title="Search field cannot be Blank" name="q">
+        <button type="submit"><em class="fa fa-search" aria-hidden="true"></em>
         </button>
       </form>
     </div>
@@ -31,7 +31,7 @@
         <input type = "hidden" name = "authenticity_token" value = "<%= form_authenticity_token %>">
         <input type="text" value="<%= current_user.id %>" name="user_id" hidden>
         <input type="file" name="image" class="post-form" required>
-        <input type="text" name="description" placeholder="description" class="post-form" required>
+        <input type="text" name="description" placeholder="Description" class="post-form" required>
         <input type="submit" name="Post" class="add-post">
       </form>
     </div>

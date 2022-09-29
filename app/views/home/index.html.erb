@@ -6,9 +6,9 @@
       </a>
     </div>
     <div class="search-box">
-      <form role="search" action="/search" method="get">
-        <input type="text" placeholder="Search" class="search" required pattern=".*\S+.*" title="Search field cannot be Blank">
-        <button type="submit" name="q"><em class="fa fa-search" aria-hidden="true"></em>
+      <form action="/search_profile" method="get">
+        <input type="text" placeholder="Search" class="search" required pattern=".*\S+.*" title="Search field cannot be Blank" name="q">
+        <button type="submit" ><em class="fa fa-search" aria-hidden="true"></em>
         </button>
       </form>
     </div>
@@ -28,11 +28,16 @@
         <div class="username-div">
           <div class="user-profile"><i class="fa-solid fa-circle-user"></i> </div>
           <div class="username">
-          <%user = User.find(posts.user_id)%>
+            <%user = User.find(posts.user_id)%>
             <p><%=user.user_name %></p>
           </div>
+          <div class="nav-dots"><i class="fa-solid fa-ellipsis-vertical"></i>
+            <div class="dropdown-contents">
+              <%= link_to "Delete" , "/delete_posts/#{posts.id}" , method: :delete , class:"p" %>
+            </div>
+          </div>
         </div>
-        <div class="img-div">
+        <div>
           <% post_img_path = "/uploads/post/image/"+posts[:id].to_s+"/"+posts[:image] %>
           <img src=<%= post_img_path %> alt="post_img"  height="450px" width="400px">
         </div>

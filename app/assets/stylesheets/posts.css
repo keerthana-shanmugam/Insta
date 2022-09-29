@@ -17,20 +17,36 @@
     margin-top: 10%;
 }
 .add-post-div{
-    border: 2px solid black;
+    border: 2px solid whitesmoke;
     border-radius: 5px;
     height: auto;
-    width: 350px;
-    padding: 5px;
-    align-items: center;
+    width: 280px;
+    padding: 10px;
+    box-shadow: 0 2rem 3rem whitesmoke;
+    background-color: whitesmoke;
 }
 .post-form {
-    padding: 4px;
+    padding: 7px;
     margin: 3px;
-    border: 2px solid black;  
-    width: 300px;  
+    border: 1.5px solid rgb(250, 81, 78);  
+    width: 250px;  
     height: auto;
+    border-radius: 5px;
+    background-color: white;
 }
 .add-post {
+    padding: 7px;
     background-color: rgb(250, 81, 78);
+    width: 200px;
+    margin-left: 30px;
+    margin-top: 7px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+.add-post:hover {
+    background-color: white;
+    border: 1.5px solid rgb(250, 81, 78);
+    border-radius: 5px;
+    color: rgb(250, 81, 78);
 }

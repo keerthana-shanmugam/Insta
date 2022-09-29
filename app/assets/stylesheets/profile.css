@@ -2,10 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/ */
 
+.body-profile {
+    margin-top: 3px;
+}
+
 .main-profile {
     display: flex;
     justify-content: center;
-
 }
 .profile-photo i {
     font-size: 150px;
@@ -45,3 +48,19 @@
     height: 100%;
     border-top: 2px solid black;
 }
+.users-posts {
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+/* search-profile css */
+
+.body-search-profile {
+    display: flex;
+    justify-content: center;
+}
+.main-search-profile {
+    display: block;
+  
+}
+

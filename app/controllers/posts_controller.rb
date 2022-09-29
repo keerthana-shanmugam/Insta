@@ -14,9 +14,12 @@ class PostsController < ApplicationController
     else
       render plain:false
     end
+    
   end
-
-  def user_post
-    @item_post = Post.all
+   
+  def delete
+    @delete_post = Post.where(id: params[:id]) 
+    @delete_post.destroy_all
+    redirect_to '/'
   end
 end

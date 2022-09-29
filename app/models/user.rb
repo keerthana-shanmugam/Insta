@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  validates :name , presence: true
+  validates :user_name , presence: true, uniqueness: true
 
   has_many :sender_follow_requests, class_name: 'FollowRequest', foreign_key: 'sender_id'
   has_many :recevier_follow_requests, class_name: 'FollowRequest', foreign_key: 'receiver_id'

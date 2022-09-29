@@ -1,14 +1,14 @@
 <div class="body-div">
-  <div class="nav-div">
+  <div class="nav-bar-div">
     <div class="logo">
       <a href="/">
         <p>Insta</p>
       </a>
     </div>
     <div class="search-box">
-      <form role="search" action="/search" method="get">
-        <input type="text" placeholder="Search" class="search" required pattern=".*\S+.*" title="Search field cannot be Blank">
-        <button type="submit" name="q"><em class="fa fa-search" aria-hidden="true"></em>
+      <form action="/search_profile" method="get">
+        <input type="text" placeholder="Search" class="search" required pattern=".*\S+.*" title="Search field cannot be Blank"  name="q">
+        <button type="submit"><em class="fa fa-search" aria-hidden="true"></em>
         </button>
       </form>
     </div>
@@ -32,9 +32,9 @@
           <label class="user-name"><%= current_user.name %></label>
         </div>
         <div class="follow-class">
-          <p>Posts</p>
-          <p>Following</p>
-          <p>Followers</p>
+          <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
+          <p><span><%=FollowRequest.where(sender_id: current_user.id).count %></span>Following</p>
+          <p><span><%=Follower.where(id: current_user.id).count %></span>Followers</p>
         </div>
         <div class="name-class">
           <label class="user-name"><%=current_user.user_name %></label>
@@ -42,8 +42,17 @@
       </div>
     </div>
     <div class="post-profile">
-      <div>
-        
+      <div class="users-posts">
+        <% Post.where(user_id: current_user.id).each do |posts| %>
+          <div class="img-div">
+            <% post_img_path = "/uploads/post/image/"+posts[:id].to_s+"/"+posts[:image] %>
+            <img src=<%= post_img_path %> alt="post_img"  height="350px" width="300px">
+          </div>
+          <div>
+            <p><%= posts.description %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
