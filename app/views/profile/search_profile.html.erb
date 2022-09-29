@@ -2,49 +2,58 @@
   <div class="main-search-profile">
     <% @username.each do |user| %>
       <% if user == current_user %>
-        <div class="profile-photo">
-          <i class="fa-regular fa-circle-user"></i>
-        </div>
-        <div class="profile-view">
-          <div class="uname-class">
-            <label class="user-name"><%= user.user_name %></label>
+        <div class="search-profile-view">
+          <div class="profile-photo">
+            <i class="fa-regular fa-circle-user"></i>
           </div>
-          <div class="follow-class">
-           <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
-          <p><span><%=FollowRequest.where(id: current_user.id).count %></span>Following</p>
-          <p><span><%=Follower.where(id: current_user.id).count %></span>Followers</p>
-          </div>
-          <div class="name-class">
-            <label class="user-name"><%= user.name %></label>
+          <div class="profile-view">
+            <div class="uname-class">
+              <label class="user-name"><%= user.user_name %></label>
+            </div>
+            <div class="follow-class">
+              <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
+              <p><span><%=FollowRequest.where(receiver_id: current_user.id).count %></span>Followers</p>
+              <p><span><%=FollowRequest.where(sender_id: current_user.id).count %></span>Following</p>
+            </div>
+            <div class="name-class">
+              <label class="user-name"><%= user.name %></label>
+            </div>
+            <div class="div">
+            <%= link_to "view Profile", "/profile/new", class:"follow_btn" %>
+            </div>
           </div>
         </div>
       <% else %>
-        <div class="profile-photo">
-          <i class="fa-regular fa-circle-user"></i>
-        </div>
-        <div class="profile-view">
-          <div class="uname-class">
-            <label class="user-name"><%= user.user_name %></label>
+        <div class="search-profile-view">
+          <div class="profile-photo">
+            <i class="fa-regular fa-circle-user"></i>
           </div>
-          <div class="follow-class">
-           <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
-          <p><span><%=FollowRequest.where(id: current_user.id).count %></span>Following</p>
-          <p><span><%=Follower.where(id: current_user.id).count %></span>Followers</p>
-          </div>
-          <div class="name-class">
-            <label class="user-name"><%= user.name %></label>
-          </div>
-          <div class="div">
-            <% friend_req = FollowRequest.find_by(sender_id: current_user.id,receiver_id: user.id) %>
-            <% unless friend_req %>
-              <a href="/search_profile/<%= user.id%>"><button class = "before_status">Follow</button></a>
-            <% else %>
-              <button class = "after_status">Unfollow</button>
-            <% end %>
+          <div class="profile-view">
+            <div class="uname-class">
+              <label class="user-name"><%= user.user_name %></label>
+            </div>
+            <div class="follow-class">
+              <p><span><%=Post.where(user_id: user.id).count %></span>Posts</p>
+              <p><span><%=FollowRequest.where(receiver_id: user.id).count %></span>Followers</p>
+              <p><span><%=FollowRequest.where(sender_id: user.id).count %></span>Following</p>
+            </div>
+            <div class="name-class">
+              <label class="user-name"><%= user.name %></label>
+            </div>
+            <div class="div">
+              <% friend_req = FollowRequest.find_by(sender_id: current_user.id,receiver_id: user.id) %>
+              <% unless friend_req %>
+                <%= link_to "Follow" , "/follow_request/#{user.id}", class: "follow_btn" %>
+                <%= link_to "view Profile", "/profile/new", class:"follow_btn" %>
+              <% else %>
+                <%= link_to "Unfollow", "/delete_request/#{user.id}" , method: :delete, class: "unfollow_btn" %>
+                <%= link_to "view Profile", "/profile/new", class:"follow_btn" %>
+              <% end %>
+            </div>
           </div>
         </div>
       <%end%>
     <%end%>
     <%# <% FollowRequest.each do |request| %>
+    </div>
   </div>
-</div>

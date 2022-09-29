@@ -63,4 +63,8 @@
     display: block;
   
 }
+.search-profile-view {
+    display: flex;
+    justify-content: center;
+}
 

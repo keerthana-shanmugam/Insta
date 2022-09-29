@@ -20,8 +20,9 @@ Rails.application.routes.draw do
   get '/search_profile', to: 'profile#search_profile'
 
   get 'profile/search_profile'
-  post '/follow_request/:id', to: 'profile#follow_request'
-  get '/search_profile/:id', to: 'profile#follow_request'
+  # post '/follow_request/:id', to: 'profile#follow_request'
+  get '/follow_request/:id', to: 'profile#follow'
+  delete 'delete_request/:id', to: 'profile#unfollow'
 
 
 
