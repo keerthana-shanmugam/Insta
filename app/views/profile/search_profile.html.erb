@@ -1,59 +1,83 @@
-<div class="body-search-profile">
-  <div class="main-search-profile">
-    <% @username.each do |user| %>
-      <% if user == current_user %>
-        <div class="search-profile-view">
-          <div class="profile-photo">
-            <i class="fa-regular fa-circle-user"></i>
-          </div>
-          <div class="profile-view">
-            <div class="uname-class">
-              <label class="user-name"><%= user.user_name %></label>
-            </div>
-            <div class="follow-class">
-              <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
-              <p><span><%=FollowRequest.where(receiver_id: current_user.id).count %></span>Followers</p>
-              <p><span><%=FollowRequest.where(sender_id: current_user.id).count %></span>Following</p>
-            </div>
-            <div class="name-class">
-              <label class="user-name"><%= user.name %></label>
-            </div>
-            <div class="div">
-            <%= link_to "view Profile", "/profile/new", class:"follow_btn" %>
-            </div>
-          </div>
-        </div>
-      <% else %>
-        <div class="search-profile-view">
-          <div class="profile-photo">
-            <i class="fa-regular fa-circle-user"></i>
-          </div>
-          <div class="profile-view">
-            <div class="uname-class">
-              <label class="user-name"><%= user.user_name %></label>
-            </div>
-            <div class="follow-class">
-              <p><span><%=Post.where(user_id: user.id).count %></span>Posts</p>
-              <p><span><%=FollowRequest.where(receiver_id: user.id).count %></span>Followers</p>
-              <p><span><%=FollowRequest.where(sender_id: user.id).count %></span>Following</p>
-            </div>
-            <div class="name-class">
-              <label class="user-name"><%= user.name %></label>
-            </div>
-            <div class="div">
-              <% friend_req = FollowRequest.find_by(sender_id: current_user.id,receiver_id: user.id) %>
-              <% unless friend_req %>
-                <%= link_to "Follow" , "/follow_request/#{user.id}", class: "follow_btn" %>
-                <%= link_to "view Profile", "/profile/new", class:"follow_btn" %>
-              <% else %>
-                <%= link_to "Unfollow", "/delete_request/#{user.id}" , method: :delete, class: "unfollow_btn" %>
-                <%= link_to "view Profile", "/profile/new", class:"follow_btn" %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <%end%>
-    <%end%>
-    <%# <% FollowRequest.each do |request| %>
+<div class="body-div">
+  <div class="nav-bar-div">
+    <div class="logo">
+      <a href="/">
+        <p>Insta</p>
+      </a>
+    </div>
+    <div class="search-box">
+      <form action="/search_profile" method="get">
+        <input type="text" placeholder="Search" class="search" required pattern=".*\S+.*" title="Search field cannot be Blank"  name="q">
+        <button type="submit"><em class="fa fa-search" aria-hidden="true"></em>
+        </button>
+      </form>
+    </div>
+    <div class="nav-icon"><a href="/"><i class="fa-solid fa-house"></i></a></div>
+    <div class="nav-icon"><a href="/posts/new"><i class="fa-solid fa-circle-plus"></i></a></div>
+    <div class="nav-icon"><a href=""><i class="fa-solid fa-heart"></i></a></div>
+    <div class="profile-icon"><i class="fa-solid fa-circle-user"></i>
+      <div class="dropdown-content">
+        <%= link_to "Profile" ,"/profile/new" , class:"a"%>
+        <%= link_to "Log Out","/users/sign_out", method: :delete, class:"a" %>
+      </div>
     </div>
   </div>
+  <div class="body-search-profile">
+    <div class="main-search-profile">
+      <% @username.each do |user| %>
+        <% if user == current_user %>
+          <div class="search-profile-view">
+            <div class="profile-photo">
+              <i class="fa-regular fa-circle-user"></i>
+            </div>
+            <div class="profile-view">
+              <div class="uname-class">
+                <label class="user-name"><%= user.user_name %></label>
+              </div>
+              <div class="follow-class">
+                <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
+                <p><span><%=FollowRequest.where(receiver_id: current_user.id).count %></span>Followers</p>
+                <p><span><%=FollowRequest.where(sender_id: current_user.id).count %></span>Following</p>
+              </div>
+              <div class="name-class">
+                <label class="user-name"><%= user.name %></label>
+              </div>
+              <div class="follow-div">
+                <%= link_to "view Profile", "/profile/new", class:"follow_btn" %>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="search-profile-view">
+            <div class="profile-photo">
+              <i class="fa-regular fa-circle-user"></i>
+            </div>
+            <div class="profile-view">
+              <div class="uname-class">
+                <label class="user-name"><%= user.user_name %></label>
+              </div>
+              <div class="follow-class">
+                <p><span><%=Post.where(user_id: user.id).count %></span>Posts</p>
+                <p><span><%=FollowRequest.where(receiver_id: user.id).count %></span>Followers</p>
+                <p><span><%=FollowRequest.where(sender_id: user.id).count %></span>Following</p>
+              </div>
+              <div class="name-class">
+                <label class="user-name"><%= user.name %></label>
+              </div>
+                <% friend_req = FollowRequest.find_by(sender_id: current_user.id,receiver_id: user.id) %>
+                <% unless friend_req %>
+                 <div class="follow-div">
+                  <%= link_to "Follow" , "/follow_request/#{user.id}", class: "follow_btn" %>
+                  </div>
+                <% else %>
+                <div class="unfollow-div">
+                  <%= link_to "Unfollow", "/delete_request/#{user.id}" , method: :delete, class: "unfollow_btn" %>
+                  </div>
+                <% end %>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+</div>

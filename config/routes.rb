@@ -16,16 +16,13 @@ Rails.application.routes.draw do
   get '/posts' , to: 'posts#user_post'
   post '/new_posts', to: 'posts#create'
   delete 'delete_posts/:id', to: 'posts#delete'
-  
-  get '/search_profile', to: 'profile#search_profile'
 
   get 'profile/search_profile'
+  get '/search_profile', to: 'profile#search_profile'
+
   # post '/follow_request/:id', to: 'profile#follow_request'
   get '/follow_request/:id', to: 'profile#follow'
   delete 'delete_request/:id', to: 'profile#unfollow'
 
-
-
-  # match '/profile/search_profile/:id', :to => 'profile#store_frnd_req', :via =>  :get
 
 end
