@@ -24,5 +24,6 @@ Rails.application.routes.draw do
   get '/follow_request/:id', to: 'profile#follow'
   delete 'delete_request/:id', to: 'profile#unfollow'
 
-
+  get '/user_like/:id', to: 'home#like'
+  delete 'delete_like/:id', to: 'home#unlike'
 end

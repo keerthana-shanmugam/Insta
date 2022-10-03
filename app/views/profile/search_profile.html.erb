@@ -26,27 +26,7 @@
     <div class="main-search-profile">
       <% @username.each do |user| %>
         <% if user == current_user %>
-          <div class="search-profile-view">
-            <div class="profile-photo">
-              <i class="fa-regular fa-circle-user"></i>
-            </div>
-            <div class="profile-view">
-              <div class="uname-class">
-                <label class="user-name"><%= user.user_name %></label>
-              </div>
-              <div class="follow-class">
-                <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
-                <p><span><%=FollowRequest.where(receiver_id: current_user.id).count %></span>Followers</p>
-                <p><span><%=FollowRequest.where(sender_id: current_user.id).count %></span>Following</p>
-              </div>
-              <div class="name-class">
-                <label class="user-name"><%= user.name %></label>
-              </div>
-              <div class="follow-div">
-                <%= link_to "view Profile", "/profile/new", class:"follow_btn" %>
-              </div>
-            </div>
-          </div>
+          
         <% else %>
           <div class="search-profile-view">
             <div class="profile-photo">

@@ -33,7 +33,15 @@
         </div>
         <div class="follow-class">
           <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
-          <p><span><%=FollowRequest.where(receiver_id: current_user.id).count %></span>Followers</p>
+          <%# <% FollowRequest.each do |followers| %>
+          <%# <% user = User.find(followers.receiver_id) %>
+          <p><span><%=FollowRequest.where(receiver_id: current_user.id).count %></span>
+          
+          Followers
+          <%# <div>
+          <p><% user.user_name %>
+          </p>
+      
           <p><span><%=FollowRequest.where(sender_id: current_user.id).count %></span>Following</p>
           
         </div>
