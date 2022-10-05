@@ -2,14 +2,15 @@ class PostsController < ApplicationController
   def new
   end
 
+
   def create
     # debugger
-    posts = Post.create!(
+    @posts = Post.create!(
       image: params[:image],
       description: params[:description],
       user_id: current_user.id
     )
-    if posts.save
+    if @posts.save
       redirect_to '/home/index'
     else
       render plain:false

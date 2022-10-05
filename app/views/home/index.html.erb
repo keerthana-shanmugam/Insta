@@ -23,13 +23,15 @@
     </div>
   </div>
   <div class="main-div">
-    <% Post.all.each do |posts|%>
+    <% @posts.each do |posts|%>
       <div class="post-box">
         <div class="username-div">
-          <div class="user-profile"><i class="fa-solid fa-circle-user"></i> </div>
-          <div class="username">
-            <%user = User.find(posts.user_id)%>
-            <p><%=user.user_name %></p>
+          <div class="holder-profile-user">
+            <div class="user-profile"><i class="fa-solid fa-circle-user"></i> </div>
+            <div class="username">
+              <%user = User.find(posts.user_id)%>
+              <p><%=user.user_name %></p>
+            </div>
           </div>
           <div class="nav-dots"><i class="fa-solid fa-ellipsis-vertical"></i>
             <div class="dropdown-contents">
@@ -37,22 +39,35 @@
             </div>
           </div>
         </div>
-        <div>
-          <% post_img_path = "/uploads/post/image/"+posts[:id].to_s+"/"+posts[:image] %>
-          <img src=<%= post_img_path %> alt="post_img"  height="450px" width="400px">
+          <div>
+            <% post_img_path = "/uploads/post/image/"+posts[:id].to_s+"/"+posts[:image] %>
+            <img src=<%= post_img_path %> alt="post_img"  height="450px" width="400px">
+          </div>
+          <div class="like-main-div">
+            <% like_heart = Like.find_by(user_id: current_user.id, post_id: posts.id) %>
+            <% unless like_heart %>
+              <div>
+                <%= link_to "/user_like/#{posts.id}", class:"like-div" do %>
+                  <i class="fa-regular fa-heart"></i>
+                <% end %>
+              </div>
+            <% else %>
+              <div>
+                <%= link_to  "/delete_like/#{posts.id}", method: :delete, class:"unlike-div" do %>
+                  <i class="fa-solid fa-heart"></i>
+                <% end %>
+              </div>
+            <% end %>
+            <div class="comment-icon-div"><i class="fa-regular fa-comment"></i></div>
+          </div>
+          <div>
+            <p><%= posts.description %></p>
+          </div>
+          <div class="comment-box-div">
+            <p>Add Your Comments</p>
+            <button>Post</button>
+          </div>
         </div>
-        <div class="like-main-div">
-          <div class="like-div"><i class="fa-regular fa-heart"></i></div>
-          <div class="comment-icon-div"><i class="fa-regular fa-comment"></i></div>
-        </div>
-        <div>
-          <p><%= posts.description %></p>
-        </div>
-        <div class="comment-box-div">
-          <p>Add Your Comments</p>
-          <button>Post</button>
-        </div>
-      </div>
-    <%end%>
+      <%end%>
+    </div>
   </div>
-</div>

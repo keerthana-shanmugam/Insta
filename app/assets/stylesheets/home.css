@@ -120,6 +120,8 @@
 .username-div {
     display: flex;
     padding: 1px;
+    justify-content: space-between;
+    
 }
 
 .user-profile {
@@ -138,6 +140,7 @@
     font-size: 30px;
     color: black;
     font-family: 'Roboto Condensed', sans-serif;
+    text-overflow: ellipsis;
 }
 
 .nav-dots {
@@ -183,9 +186,19 @@
 
 .like-div i {font-size: 25px;}
 
+.unlike-div i{
+    font-size: 25px;
+    color: rgb(250, 81, 78);
+}
+
 .comment-icon-div i {font-size: 25px;}
 
 .like-div {
+    padding: 10px;
+    margin: 2px;
+}
+
+.unlike-div {
     padding: 10px;
     margin: 2px;
 }
@@ -217,4 +230,8 @@
     height: 35px;
     border-radius: 5px;
     margin-left: 150px;
+}
+
+.holder-profile-user{
+    display: flex;
 }

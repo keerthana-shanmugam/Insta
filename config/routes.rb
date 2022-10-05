@@ -26,4 +26,7 @@ Rails.application.routes.draw do
 
   get '/user_like/:id', to: 'home#like'
   delete 'delete_like/:id', to: 'home#unlike'
+
+  get '/user_comment/:id', to: 'home#comment'
+  delete 'delete_comment/:id', to: 'home#uncomment'
 end

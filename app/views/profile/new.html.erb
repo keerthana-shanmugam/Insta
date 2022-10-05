@@ -32,18 +32,31 @@
           <label class="user-name"><%= current_user.user_name %></label>
         </div>
         <div class="follow-class">
-          <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
-          <%# <% FollowRequest.each do |followers| %>
-          <%# <% user = User.find(followers.receiver_id) %>
-          <p><span><%=FollowRequest.where(receiver_id: current_user.id).count %></span>
-          
-          Followers
-          <%# <div>
-          <p><% user.user_name %>
-          </p>
-      
-          <p><span><%=FollowRequest.where(sender_id: current_user.id).count %></span>Following</p>
-          
+          <div>
+            <p><span><%=Post.where(user_id: current_user.id).count %></span>Posts</p>
+          </div>
+          <div class="onclick-dropdown">
+            <p><span><%=FollowRequest.where(receiver_id: current_user.id).count %></span>
+              Followers
+              <% followers = FollowRequest.where(receiver_id: current_user.id) %>
+              <div class="dropdown-box">
+                <% followers.each do |t|%>
+                  <p class="nam"><%= User.find(t.sender_id).name %></p>
+                <%end%>
+              </div>
+            </p>
+          </div>
+          <div class="onclick-dropdown">
+            <p><span><%= FollowRequest.where(sender_id: current_user.id).count %></span>
+              Following
+              <% following = FollowRequest.where(sender_id: current_user.id) %>
+              <div class="dropdown-box">
+                <% following.each do |t|%>
+                  <p  class="nam"><%= User.find(t.receiver_id).name %></p>
+                <%end%>
+              </div>
+            </p>
+          </div>
         </div>
         <div class="name-class">
           <label class="user-name"><%=current_user.name %></label>
