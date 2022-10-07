@@ -1,0 +1,30 @@
+<div class="comment-div">
+  <div class="post-commented">
+    <div>
+      <% post_img_path = "/uploads/post/image/"+@posts.id.to_s+"/"+@posts[:image] %>
+      <img src=<%= post_img_path %> alt="post_img"  height="450px" width="400px">
+    </div>
+    <div>
+      <p><%= @posts.description %></p>
+    </div>
+  </div>
+  <div class="view-comment">
+    <% post_comment = Comment.where(post_id: @posts.id, user_id: current_user.id) %>
+    <% if post_comment %>
+      <% post_comment.each do |comment|%>
+        <% if comment.user_id == current_user.id %>
+          <div><%= User.find(comment.post_id).user_name %></div>
+          <div>
+            <input type="text" value="<%=comment.description%>" class = "user_desc">
+            <%= link_to "delete", "/delete_comment/#{comment.id}", method:"delete" %>
+          </div>
+        <% else %>
+          <div><%= User.find(comment.post_id).user_name %></div>
+          <div>
+            <p><%= comment.description %></p>
+          </div>
+        <%end%>
+      <%end%>
+    <% end %>
+  </div>
+</div>

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get '/user_like/:id', to: 'home#like'
   delete 'delete_like/:id', to: 'home#unlike'
 
-  get '/user_comment/:id', to: 'home#comment'
+  get 'home/comment'
+  match '/comment/:id' , to: 'home#comment' , via: :get
+  post '/user_comment', to: 'home#create'
   delete 'delete_comment/:id', to: 'home#uncomment'
 end

@@ -29,45 +29,54 @@
           <div class="holder-profile-user">
             <div class="user-profile"><i class="fa-solid fa-circle-user"></i> </div>
             <div class="username">
-              <%user = User.find(posts.user_id)%>
-              <p><%=user.user_name %></p>
+              <% user = User.find(posts.user_id) %>
+              <p><%= user.user_name %></p>
             </div>
           </div>
-          <div class="nav-dots"><i class="fa-solid fa-ellipsis-vertical"></i>
-            <div class="dropdown-contents">
-              <%= link_to "Delete" , "/delete_posts/#{posts.id}" , method: :delete , class:"p" %>
+          <% if posts.user_id == current_user.id %>
+            <div class="nav-dots"><i class="fa-solid fa-ellipsis-vertical"></i>
+              <div class="dropdown-contents">
+                <%= link_to "Delete" , "/delete_posts/#{posts.id}" , method: :delete , class:"p" %>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
-          <div>
-            <% post_img_path = "/uploads/post/image/"+posts[:id].to_s+"/"+posts[:image] %>
-            <img src=<%= post_img_path %> alt="post_img"  height="450px" width="400px">
-          </div>
-          <div class="like-main-div">
-            <% like_heart = Like.find_by(user_id: current_user.id, post_id: posts.id) %>
-            <% unless like_heart %>
-              <div>
-                <%= link_to "/user_like/#{posts.id}", class:"like-div" do %>
-                  <i class="fa-regular fa-heart"></i>
-                <% end %>
-              </div>
-            <% else %>
-              <div>
-                <%= link_to  "/delete_like/#{posts.id}", method: :delete, class:"unlike-div" do %>
-                  <i class="fa-solid fa-heart"></i>
-                <% end %>
-              </div>
-            <% end %>
-            <div class="comment-icon-div"><i class="fa-regular fa-comment"></i></div>
-          </div>
-          <div>
-            <p><%= posts.description %></p>
-          </div>
+        <div>
+          <% post_img_path = "/uploads/post/image/"+posts[:id].to_s+"/"+posts[:image] %>
+          <img src=<%= post_img_path %> alt="post_img"  height="450px" width="400px">
+        </div>
+        <div class="like-main-div">
+          <% like_heart = Like.find_by(user_id: current_user.id, post_id: posts.id) %>
+          <% unless like_heart %>
+            <div class="like-div">
+              <%= link_to "/user_like/#{posts.id}", class:"like" do %>
+                <i class="fa-regular fa-heart"></i>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="unlike-div">
+              <%= link_to  "/delete_like/#{posts.id}", method: :delete, class:"unlike" do %>
+                <i class="fa-solid fa-heart"></i>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="comment-icon-div"> <%= link_to "/comment/#{posts.id}" do %> <i class="fa-regular fa-comment"></i> <%end%> </div>
+        </div>
+        <div><%= Like.where(post_id: posts.id).count %>likes
+        </div>
+        <div>
+          <p><%= posts.description %></p>
+        </div>
+        <form action= "/user_comment" , method="post" enctype='multipart/form-data'>
           <div class="comment-box-div">
-            <p>Add Your Comments</p>
-            <button>Post</button>
+            <input type = "hidden" name = "authenticity_token" value = "<%= form_authenticity_token %>">
+            <input type="text" value="<%= current_user.id %>" name="user_id" hidden>
+            <input type="text" value="<%= posts.id %>" name="post_id" hidden>
+            <input type="text" name="description" placeholder="Add Your Comments" class="description" required>
+            <input type="submit" value="Post" name="post" class="post-submit-btn" >
           </div>
-        </div>
-      <%end%>
-    </div>
+        </form>
+      </div>
+    <%end%>
   </div>
+</div>

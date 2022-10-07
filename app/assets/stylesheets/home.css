@@ -124,6 +124,10 @@
     
 }
 
+.holder-profile-user {
+    display: flex;
+}
+
 .user-profile {
     padding: 1px;
     margin-top: 3px;
@@ -184,14 +188,20 @@
     padding: 2px;
 }
 
-.like-div i {font-size: 25px;}
+.like i {
+    font-size: 25px;
+    color: black;
+}
 
-.unlike-div i{
+.unlike i{
     font-size: 25px;
     color: rgb(250, 81, 78);
 }
 
-.comment-icon-div i {font-size: 25px;}
+.comment-icon-div i {
+    font-size: 25px;
+    color: black;
+}
 
 .like-div {
     padding: 10px;
@@ -218,20 +228,55 @@
     height: 50px;
 }
 
-.comment-box-div p {
+.description {
     font-family: 'Roboto Condensed', sans-serif;
     padding: 5px;
+    border: none;
 }
 
-.comment-box-div button {
+.post-submit-btn {
     background-color: rgb(250, 81, 78);
     padding: 5px;
     width: 80px;
     height: 35px;
     border-radius: 5px;
-    margin-left: 150px;
+    margin-left: 140px;
 }
 
-.holder-profile-user{
+/* =============== comment page css ================*/
+
+.comment-div {
     display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.post-commented {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.post-commented p {
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 10px;
+}
+
+.view-comment {
+    border: 2px solid black;
+    padding: 10px;
+    width: 400px;
+    height: auto;
+    overflow: hidden;
+}
+
+.user_desc {
+    border: none;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.view-comment p {
+    border: none;
+    font-family: 'Roboto Condensed', sans-serif;
 }

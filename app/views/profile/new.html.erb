@@ -52,7 +52,7 @@
               <% following = FollowRequest.where(sender_id: current_user.id) %>
               <div class="dropdown-box">
                 <% following.each do |t|%>
-                  <p  class="nam"><%= User.find(t.receiver_id).name %></p>
+                  <p class="nam"><%= User.find(t.receiver_id).name %></p>
                 <%end%>
               </div>
             </p>
