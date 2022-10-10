@@ -193,6 +193,10 @@
     color: black;
 }
 
+.like i:hover {
+    color: rgb(250, 81, 78);
+}
+
 .unlike i{
     font-size: 25px;
     color: rgb(250, 81, 78);
@@ -201,6 +205,10 @@
 .comment-icon-div i {
     font-size: 25px;
     color: black;
+}
+
+.comment-icon-div i:hover {
+    color: rgb(250, 81, 78);
 }
 
 .like-div {
@@ -216,6 +224,23 @@
 .comment-icon-div {
     padding: 10px;
     margin: 2px;
+}
+
+.like-count {
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+.like-count:hover {
+    color: rgb(250, 81, 78);
+}
+
+.post-desc {
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-left: 5px;
+    padding: 3px;
 }
 
 .comment-box-div {

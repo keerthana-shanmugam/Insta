@@ -14,7 +14,7 @@
     </div>
     <div class="nav-icon"><a href="/"><i class="fa-solid fa-house"></i></a></div>
     <div class="nav-icon"><a href="/posts/new"><i class="fa-solid fa-circle-plus"></i></a></div>
-    <div class="nav-icon"><a href=""><i class="fa-solid fa-heart"></i></a></div>
+    <%# <div class="nav-icon"><a href=""><i class="fa-solid fa-heart"></i></a></div> %>
     <div class="profile-icon"><i class="fa-solid fa-circle-user"></i>
       <div class="dropdown-content">
         <%= link_to "Profile" ,"/profile/new" , class:"a"%>
@@ -62,9 +62,9 @@
           <% end %>
           <div class="comment-icon-div"> <%= link_to "/comment/#{posts.id}" do %> <i class="fa-regular fa-comment"></i> <%end%> </div>
         </div>
-        <div><%= Like.where(post_id: posts.id).count %>likes
+        <div><%= link_to "/like/#{posts.id}", class:"like-count" do %><%= Like.where(post_id: posts.id).count %>&nbsp;likes <%end%>
         </div>
-        <div>
+        <div  class="post-desc">
           <p><%= posts.description %></p>
         </div>
         <form action= "/user_comment" , method="post" enctype='multipart/form-data'>

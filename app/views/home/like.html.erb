@@ -1,0 +1,24 @@
+<div class="comment-div">
+  <div class="post-commented">
+    <div>
+      <% post_img_path = "/uploads/post/image/"+@posts.id.to_s+"/"+@posts[:image] %>
+      <img src=<%= post_img_path %> alt="post_img"  height="450px" width="400px">
+    </div>
+    <div>
+      <p><%= @posts.description %></p>
+    </div>
+  </div>
+  <div class="">
+    <% like_post = Like.where(post_id: @posts.id) %>
+    <% if like_post %>
+      <% like_post.each do |like| %>
+        <div><%= User.find(like.user_id).user_name %></div>
+        <% if like.user_id == current_user.id %>
+          <%= link_to  "/delete_like/#{@posts.id}", method: :delete, class:"unlike" do %>
+            <i class="fa-solid fa-heart"></i>
+          <%end%>
+        <%end%>
+      <%end%>
+    <%end%>
+  </div>
+</div>
