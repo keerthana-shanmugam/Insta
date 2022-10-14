@@ -64,7 +64,7 @@
         </div>
         <div><%= link_to "/like/#{posts.id}", class:"like-count" do %><%= Like.where(post_id: posts.id).count %>&nbsp;likes <%end%>
         </div>
-        <div  class="post-desc">
+        <div class="post-desc">
           <p><%= posts.description %></p>
         </div>
         <form action= "/user_comment" , method="post" enctype='multipart/form-data'>
